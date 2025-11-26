@@ -4,10 +4,16 @@ import 'package:widgetbook_workspace/shared/app_colors.dart';
 abstract class AppShadows {
   static List<BoxShadow> cardGlowShadow = [
     BoxShadow(
-      color: loadingShadowColor,
-      blurRadius: 25,
-      spreadRadius: 1,
-      offset: const Offset(0, 0),
+      color: loadingBorderColor.withValues(alpha: 0.3),
+      blurRadius: 20,
+      spreadRadius: 0,
+      offset: const Offset(0, 10),
+    ),
+    BoxShadow(
+      color: loadingBorderColor.withValues(alpha: 0.5),
+      blurRadius: 4,
+      spreadRadius: 0,
+      offset: const Offset(0, 1),
     ),
   ];
 }

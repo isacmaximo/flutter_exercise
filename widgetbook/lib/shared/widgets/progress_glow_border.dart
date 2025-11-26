@@ -19,7 +19,7 @@ class _ProgressBorderCardState extends State<ProgressBorderCard> {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: ProgressBorderPainter(progress: widget.progress),
+      foregroundPainter: ProgressBorderPainter(progress: widget.progress),
       child: widget.child,
     );
   }
@@ -32,17 +32,23 @@ class ProgressBorderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-    final r = cardRadius;
+    final stroke = 2.0;
+    final inset = stroke / 2;
+    final rect = Rect.fromLTWH(
+      inset,
+      inset,
+      size.width - stroke,
+      size.height - stroke,
+    );
+    final r = (cardRadius - inset).clamp(0.0, cardRadius).toDouble();
 
     final path = Path()
       ..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(r)));
 
-    // Pinta a borda de fundo (sem preenchimento)
     final bgPaint = Paint()
-      ..color = Colors.transparent
+      ..color = backgroundColor
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+      ..strokeWidth = stroke;
 
     canvas.drawPath(path, bgPaint);
 
@@ -53,29 +59,39 @@ class ProgressBorderPainter extends CustomPainter {
       ..strokeWidth = 2
       ..strokeCap = StrokeCap.round;
 
-    // Desenha o progresso iniciando do topo (12h) em sentido horário
-    final w = size.width;
-    final h = size.height;
+    // Desenha o progresso iniciando do topo (12h) e seguindo horário, como borda interna
+    final left = rect.left;
+    final top = rect.top;
+    final right = rect.right;
+    final bottom = rect.bottom;
 
     final progressPath = Path()
-      ..moveTo(w / 2, 0)
-      ..lineTo(w - r, 0)
-      ..arcToPoint(Offset(w, r), radius: Radius.circular(r), clockwise: true)
-      ..lineTo(w, h - r)
+      ..moveTo((left + right) / 2, top)
+      ..lineTo(right - r, top)
       ..arcToPoint(
-        Offset(w - r, h),
+        Offset(right, top + r),
         radius: Radius.circular(r),
         clockwise: true,
       )
-      ..lineTo(r, h)
+      ..lineTo(right, bottom - r)
       ..arcToPoint(
-        Offset(0, h - r),
+        Offset(right - r, bottom),
         radius: Radius.circular(r),
         clockwise: true,
       )
-      ..lineTo(0, r)
-      ..arcToPoint(Offset(r, 0), radius: Radius.circular(r), clockwise: true)
-      ..lineTo(w / 2, 0);
+      ..lineTo(left + r, bottom)
+      ..arcToPoint(
+        Offset(left, bottom - r),
+        radius: Radius.circular(r),
+        clockwise: true,
+      )
+      ..lineTo(left, top + r)
+      ..arcToPoint(
+        Offset(left + r, top),
+        radius: Radius.circular(r),
+        clockwise: true,
+      )
+      ..lineTo((left + right) / 2, top);
 
     final metrics = progressPath.computeMetrics().first;
     final length = metrics.length * progress;

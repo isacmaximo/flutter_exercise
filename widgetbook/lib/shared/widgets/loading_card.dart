@@ -16,9 +16,10 @@ class LoadingCard extends StatelessWidget {
     return ProgressBorderCard(
       progress: progress,
       child: CustomCard(
-        width: size.width * 0.8,
+        width: size.width * 0.9,
         height: size.height * 0.25,
-        boxShadow: AppShadows.cardGlowShadow,
+
+        boxShadow: progress != 1.0 ? AppShadows.cardGlowShadow : null,
         padding: EdgeInsets.all(loadingCardPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
