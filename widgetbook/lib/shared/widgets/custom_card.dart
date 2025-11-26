@@ -6,9 +6,11 @@ class CustomCard extends StatelessWidget {
   final Widget child;
   final double width;
   final double height;
-  final Border? border;
+  final BoxBorder? border;
   final List<BoxShadow>? boxShadow;
   final EdgeInsetsGeometry? padding;
+  final Color? backgroundColor;
+  final BlendMode? backgroundBlendMode;
 
   const CustomCard({
     super.key,
@@ -18,6 +20,8 @@ class CustomCard extends StatelessWidget {
     this.border,
     this.boxShadow,
     this.padding,
+    this.backgroundColor,
+    this.backgroundBlendMode,
   });
 
   @override
@@ -27,8 +31,9 @@ class CustomCard extends StatelessWidget {
       height: height,
       padding: padding,
       decoration: BoxDecoration(
-        color: surfaceColor,
+        color: backgroundColor ?? surfaceColor,
         borderRadius: BorderRadius.circular(cardRadius),
+        backgroundBlendMode: backgroundBlendMode,
         border: border,
         boxShadow: boxShadow,
       ),

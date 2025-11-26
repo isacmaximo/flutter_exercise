@@ -46,9 +46,10 @@ class ProgressBorderPainter extends CustomPainter {
       ..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(r)));
 
     final bgPaint = Paint()
-      ..color = backgroundColor
+      ..color = Colors.transparent
       ..style = PaintingStyle.stroke
-      ..strokeWidth = stroke;
+      ..strokeWidth = 2;
+    stroke;
 
     canvas.drawPath(path, bgPaint);
 

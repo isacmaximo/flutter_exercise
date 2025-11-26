@@ -39,7 +39,7 @@ class _Exercise1State extends State<Exercise1> {
                 });
               },
             ),
-            const SizedBox(height: loadingCardPadding),
+            const SizedBox(height: 24),
             Text(
               'Progress: ${(_progress * 100).toStringAsFixed(0)}%',
               style: AppTextStyle.bodyText,

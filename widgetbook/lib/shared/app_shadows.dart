@@ -9,8 +9,9 @@ abstract class AppShadows {
       spreadRadius: 0,
       offset: const Offset(0, 10),
     ),
+
     BoxShadow(
-      color: loadingBorderColor.withValues(alpha: 0.5),
+      color: loadingGlowColor,
       blurRadius: 4,
       spreadRadius: 0,
       offset: const Offset(0, 1),
