@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   widgetbook: ^3.20.2
   widgetbook_annotation: ^3.9.0
+  lottie: ^3.3.2
   formfun_flutter_test:
     path: ../
 
@@ -25,4 +26,29 @@ flutter:
   uses-material-design: true
   
   assets:
-    - assets/
+    - assets/images/ff_logo.png
+    - assets/images/ff_website.png
+    - assets/images/icon_html.svg
+    - assets/lottie/searching.json
+
+  fonts:
+    - family: Aktiv Grotesk
+      fonts:
+        - asset: assets/font/AktivGrotesk_Blk.ttf
+          weight: 900
+        - asset: assets/font/AktivGrotesk_XBd.ttf
+          weight: 800
+        - asset: assets/font/AktivGrotesk_Bd.ttf
+          weight: 700
+        - asset: assets/font/AktivGrotesk_SBd.ttf
+          weight: 600
+        - asset: assets/font/AktivGrotesk_Md.ttf
+          weight: 500
+        - asset: assets/font/AktivGrotesk_Rg.ttf
+          weight: 400
+        - asset: assets/font/AktivGrotesk_Lt.ttf
+          weight: 300
+        - asset: assets/font/AktivGrotesk_Th.ttf
+          weight: 200
+        - asset: assets/font/AktivGrotesk_Hair.ttf
+          weight: 100
